@@ -23,6 +23,13 @@ public class SmsTests
             Sms.CreateForClient(new Client { FirstName = "Test", LastName = "User", EmailAddress = "test@user.com", MobilePhoneNumber = "0400 000 000"}, okBody);
         });
     }
-    
-    
+
+    [Fact]
+    public void Sms_CreateWithClientWithNoMobilePhone_ThrowsException()
+    {
+        Should.Throw<ValidationException>(() =>
+        {
+            Sms.CreateForClient(new Client { FirstName = "Test", LastName = "User", EmailAddress = "test@user.com" }, "Test Message");
+        });
+    }
 }

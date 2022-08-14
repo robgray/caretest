@@ -8,6 +8,8 @@ public class Sms : INotification
     
     public static Sms CreateForClient(Client client, string notificationMessage)
     {
+        _ = client.MobilePhoneNumber ?? throw new ValidationException("Client must hav a valid mobile phone number");
+        
         return new Sms(client)
         {
             Body = notificationMessage

@@ -1,4 +1,6 @@
-﻿namespace Careview.CodeTest.Domain.Tests;
+﻿using Careview.CodeTest.Domain.Exceptions;
+
+namespace Careview.CodeTest.Domain.Tests;
 
 public class NotificationSenderTests
 {
@@ -12,8 +14,8 @@ public class NotificationSenderTests
     public void Send_CanSendEmail()
     {
         var email = new Email(
-            toClient: new Client { FirstName = "First", LastName = "Name", EmailAddress = "test@user.com", MobilePhoneNumber = "0400 000 000" },
-            ccClient: new Client { FirstName = "Careview", LastName = "Administrator", EmailAddress = "admin@careview.com", MobilePhoneNumber = "0400 000 001" },
+            toClient: new Client { FirstName = "First", LastName = "Name", EmailAddress = "test@user.com" },
+            ccClient: new Client { FirstName = "Careview", LastName = "Administrator", EmailAddress = "admin@careview.com" },
             bodyTemplate: "Welcome to the tests"
         );
         
@@ -41,7 +43,7 @@ public class NotificationSenderTests
     public void Send_CanSendMobileApp()
     {
         var appNotification = new MobileAppNotification(
-            client: new Client { FirstName = "First", LastName = "Name", EmailAddress = "test@user.com", MobilePhoneNumber = "0400 000 000" },
+            client: new Client { FirstName = "First", LastName = "Name", EmailAddress = "test@user.com", AppPushToken = "123457890" },
             body: "Test notification")
         {
             Preview = "Test!"
@@ -62,6 +64,20 @@ public class NotificationSenderTests
         {
             _sender.Send(unknownNotification);
         }).Message.ShouldBe($"Unknown notification type.  Cannot handle {unknownNotification.GetType().FullName}");
+    }
+
+    [Fact]
+    public void MobileAppNotification_CreateWithClientWithNoPushToken_ThrowsValidationError()
+    {
+        Should.Throw<ValidationException>(() =>
+        {
+            var appNotification = new MobileAppNotification(
+                client: new Client { FirstName = "First", LastName = "Name", EmailAddress = "test@user.com", MobilePhoneNumber = "0400 000 000" },
+                body: "Test notification")
+            {
+                Preview = "Test!"
+            };
+        });
     }
 
     private class SomeNotification : INotification

@@ -7,7 +7,7 @@ public class NotificationSender
     // Extensibility of notification types would involve adding a new type and implementing the sending logic below.
     
     // Not shown here but I'd also add logging.
-    
+
     public void Send<T>(T notification)
         where T : INotification
     {

@@ -5,7 +5,7 @@ public class TemplatingExtensionTests
     private Client GetTestClient() =>
         new Client
         {
-            FirstName = "Lewis", LastName = "Hamilton", EmailAddress = "goat@formula1.com", MobilePhoneNumber = "4444 444 444"
+            FirstName = "Lewis", LastName = "Hamilton", EmailAddress = "goat@formula1.com", MobilePhoneNumber = "4444 444 444", AppPushToken = "123457890"
         };
     
     [Fact]

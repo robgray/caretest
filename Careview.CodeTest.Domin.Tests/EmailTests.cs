@@ -9,13 +9,13 @@ public class EmailTests
     {
         var client = new Client
         {
-            FirstName = "First", LastName = "Client", EmailAddress = "first@client.com", MobilePhoneNumber = "0400 000 000"
+            FirstName = "First", LastName = "Client", EmailAddress = "first@client.com"
         };
         var email = new Email(client, CreateAdminClient(), "This is a test");
 
         var clientWithSameEmailAddress = new Client
         {
-            FirstName = "First Son", LastName = "Client", EmailAddress = "first@client.com", MobilePhoneNumber = "0400 000 000"
+            FirstName = "First Son", LastName = "Client", EmailAddress = "first@client.com"
         };
         
         email.AddTo(clientWithSameEmailAddress);
@@ -29,7 +29,7 @@ public class EmailTests
     {
         var client = new Client
         {
-            FirstName = "First", LastName = "Client", EmailAddress = "first@client.com", MobilePhoneNumber = "0400 000 000"
+            FirstName = "First", LastName = "Client", EmailAddress = "first@client.com"
         };
         var email = new Email(client, CreateAdminClient(), "This is a test");
 
@@ -44,11 +44,11 @@ public class EmailTests
     {
         var client = new Client
         {
-            FirstName = "First", LastName = "Client", EmailAddress = "first@client.com", MobilePhoneNumber = "0400 000 000"
+            FirstName = "First", LastName = "Client", EmailAddress = "first@client.com"
         };
         var client2 = new Client
         {
-            FirstName = "Second", LastName = "Client", EmailAddress = "second@client.com", MobilePhoneNumber = "0400 000 001"
+            FirstName = "Second", LastName = "Client", EmailAddress = "second@client.com"
         };
         var email = new Email(client, CreateAdminClient(), "This is a test");
         email.AddTo(client2);
@@ -63,13 +63,13 @@ public class EmailTests
     {
         var client = new Client
         {
-            FirstName = "First", LastName = "Client", EmailAddress = "first@client.com", MobilePhoneNumber = "0400 000 000"
+            FirstName = "First", LastName = "Client", EmailAddress = "first@client.com"
         };
         var email = new Email(client, CreateAdminClient(), "This is a test");
 
         var clientWithSameEmailAddress = new Client
         {
-            FirstName = "First Son", LastName = "Client", EmailAddress = "first@client.com", MobilePhoneNumber = "0400 000 000"
+            FirstName = "First Son", LastName = "Client", EmailAddress = "first@client.com"
         };
         
         email.AddCarbonCopy(clientWithSameEmailAddress);
@@ -83,7 +83,7 @@ public class EmailTests
     {
         var client = new Client
         {
-            FirstName = "First", LastName = "Client", EmailAddress = "first@client.com", MobilePhoneNumber = "0400 000 000"
+            FirstName = "First", LastName = "Client", EmailAddress = "first@client.com"
         };
         var adminClient = CreateAdminClient();
         var email = new Email(client, adminClient, "This is a test");
@@ -99,11 +99,11 @@ public class EmailTests
     {
         var client = new Client
         {
-            FirstName = "First", LastName = "Client", EmailAddress = "first@client.com", MobilePhoneNumber = "0400 000 000"
+            FirstName = "First", LastName = "Client", EmailAddress = "first@client.com"
         };
         var client2 = new Client
         {
-            FirstName = "Second", LastName = "Client", EmailAddress = "second@client.com", MobilePhoneNumber = "0400 000 001"
+            FirstName = "Second", LastName = "Client", EmailAddress = "second@client.com"
         };
         var admin = CreateAdminClient();
         var email = new Email(client, admin, "This is a test");
@@ -119,11 +119,11 @@ public class EmailTests
     {
         var client = new Client
         {
-            FirstName = "First", LastName = "Client", EmailAddress = "first@client.com", MobilePhoneNumber = "0400 000 000"
+            FirstName = "First", LastName = "Client", EmailAddress = "first@client.com"
         };
         var client2 = new Client
         {
-            FirstName = "Second", LastName = "Client", EmailAddress = "second@client.com", MobilePhoneNumber = "0400 000 001"
+            FirstName = "Second", LastName = "Client", EmailAddress = "second@client.com"
         };
         var admin = CreateAdminClient();
         
@@ -139,6 +139,7 @@ public class EmailTests
             FirstName = "Careview",
             LastName = "Admin",
             EmailAddress = "admin@careview.com",
-            MobilePhoneNumber = "0000 000 000"
+            MobilePhoneNumber = "0000 000 000",
+            AppPushToken = "123457890"
         };
 }
