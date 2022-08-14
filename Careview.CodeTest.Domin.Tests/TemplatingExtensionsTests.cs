@@ -3,7 +3,10 @@
 public class TemplatingExtensionTests
 {
     private Client GetTestClient() =>
-        new Client("Lewis", "Hamilton", "goat@formula1.com", "4444 444 444");
+        new Client
+        {
+            FirstName = "Lewis", LastName = "Hamilton", EmailAddress = "goat@formula1.com", MobilePhoneNumber = "4444 444 444"
+        };
     
     [Fact]
     public void WhenAllTemplateFieldsArePopulatedOnMergeObject_ThenTemplateIsSuccessfullyMerged()

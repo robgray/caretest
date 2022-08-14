@@ -1,15 +1,9 @@
 ﻿namespace Careview.CodeTest.Domain;
 
-public class Client
+// Assumed all clients have first names, last names, email address, and mobile phone numbers. 
+
+public record Client
 {
-    public Client(string firstName, string lastName, string emailAddress, string mobilePhoneNumber)
-    {
-        FirstName = firstName;
-        LastName = lastName;
-        EmailAddress = emailAddress;
-        MobilePhoneNumber = mobilePhoneNumber;
-    }
-    
     public string FirstName { get; set; }
     public string? MiddleInitial { get; set; }
     public string LastName { get; set; }

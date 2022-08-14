@@ -1,4 +1,6 @@
-﻿namespace Careview.CodeTest.Domain.Tests;
+﻿using Careview.CodeTest.Domain.Exceptions;
+
+namespace Careview.CodeTest.Domain.Tests;
 
 public class SmsTests
 {
@@ -8,7 +10,7 @@ public class SmsTests
         Should.Throw<ValidationException>(() =>
         {
             var tooLargeBody = new string('X', Sms.MaximumBodyLength + 1);
-            Sms.CreateForClient(new Client("Test", "User", "test@user.com", "0400 000 000"), tooLargeBody);
+            Sms.CreateForClient(new Client { FirstName = "Test", LastName = "User", EmailAddress = "test@user.com", MobilePhoneNumber = "0400 000 000"}, tooLargeBody);
         }).Message.ShouldBe($"Message too large. Maximum length is {Sms.MaximumBodyLength} characters");
     }
 
@@ -18,7 +20,9 @@ public class SmsTests
         Should.NotThrow(() =>
         {
             var okBody = new string('X', Sms.MaximumBodyLength);
-            Sms.CreateForClient(new Client("Test", "User", "test@user.com", "0400 000 000"), okBody);
+            Sms.CreateForClient(new Client { FirstName = "Test", LastName = "User", EmailAddress = "test@user.com", MobilePhoneNumber = "0400 000 000"}, okBody);
         });
     }
+    
+    
 }

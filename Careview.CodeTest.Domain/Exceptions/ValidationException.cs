@@ -1,4 +1,4 @@
-﻿namespace Careview.CodeTest.Domain;
+﻿namespace Careview.CodeTest.Domain.Exceptions;
 
 public class ValidationException : Exception
 {

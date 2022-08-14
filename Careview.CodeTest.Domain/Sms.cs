@@ -1,26 +1,30 @@
-﻿namespace Careview.CodeTest.Domain;
+﻿using Careview.CodeTest.Domain.Exceptions;
+
+namespace Careview.CodeTest.Domain;
 
 public class Sms : INotification
 {
+    private Client _client;
+    
     public static Sms CreateForClient(Client client, string notificationMessage)
     {
-        return new Sms
+        return new Sms(client)
         {
-            MobileNumber = client.MobilePhoneNumber ?? throw new ValidationException("Client does not have a mobile phone number.  Cannot send an Sms"),
             Body = notificationMessage
         };
     }
 
-    protected Sms()
+    protected Sms(Client client)
     {
+        _client = client;
     } 
 
     public const int MaximumBodyLength = 240;
+
+    public string MobileNumber => _client.MobilePhoneNumber;
     
-    public string MobileNumber { get; init; }
-    
-    private string? _body; 
-    public string? Body
+    private string _body; 
+    public string Body
     {
         get => _body;
         set
